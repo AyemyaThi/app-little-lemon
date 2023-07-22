@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Markazi|Karla:wght@100;400&display=swap');
+
+
+body {
+  display: grid;
+  grid-template-rows: 1fr auto auto auto auto;
+  margin: 0 70px 0 70px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav > ul {
+ display: flex;
+} 
+
+nav > ul li {
+  padding: 0 1rem 0 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+  list-style: none;
+  padding: 0;
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+footer, header {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 1rem;
+} 
+
+.hero, .chicago {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.App-link {
-  color: #61dafb;
+.specials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.customersay {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+footer > nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+h1 {
+  font-family: 'Markazi';
+  font-size: 64px;
+  /* color: primary */
+}
+
+h2 {
+  font-family: 'Markazi';
+  font-size: 40px;
+}
+
+.lead_text {
+  font-family: 'Karla';
+  font-size: 18px;
+}
+
+.section_title {
+  font-family: 'Karla';
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: 'Karla';
+  font-size: 16px;
+  line-height: 1.5;
 }
