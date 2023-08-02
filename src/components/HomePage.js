@@ -5,15 +5,13 @@ import Chicago from './Chicago';
 
 const HomePage = () => {
     return (
-        <article>
-           <section>
-            <h1>Home page</h1>
+        <>
+            {/* <h1>Home page</h1> */}
             <Hero />
             <Specials />
             <Customersay />
             <Chicago />
-           </section>
-        </article>
+        </>
     )
 }
 

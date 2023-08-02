@@ -1,12 +1,15 @@
 import Logo from '../images/vertical_logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <footer>
-            <img src={Logo} alt="Little Lemon" width={160} />
+            <Link to="/" >
+                <img src={Logo} alt="Little Lemon" width={80} />
+            </Link>
             <nav>
                 <section>
-                    <h6>Doormat Nav igation</h6>
+                    <p className='cta_text'>Navigation</p>
                     <ul>
                         <li><a href="" >Home</a></li>
                         <li><a href="" >About</a></li>
@@ -17,7 +20,7 @@ const Header = () => {
                     </ul>
                 </section>
                 <section>
-                    <h6>Contact</h6>
+                    <p className='cta_text'>Contact</p>
                     <ul>
                         <li><a href="" >Address</a></li>
                         <li><a href="" >Phone Number</a></li>
@@ -25,11 +28,11 @@ const Header = () => {
                     </ul>
                 </section>
                 <section>
-                    <h6>Social Media Links</h6>
+                    <p className='cta_text'>Social Media</p>
                     <ul>
-                        <li><a href="" >Address</a></li>
-                        <li><a href="" >Phone Number</a></li>
-                        <li><a href="" >Email</a></li>
+                        <li><a href="" >Instagram</a></li>
+                        <li><a href="" >LinkedIn</a></li>
+                        <li><a href="" >Pinterest</a></li>
                     </ul>
                 </section>
             </nav>
