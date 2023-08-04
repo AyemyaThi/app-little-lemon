@@ -62,12 +62,26 @@ header a {
   text-transform: uppercase;
 }
 
-footer, header {
+header {
   display: grid;
   grid-template-columns: auto auto; 
   justify-content: center;
   grid-gap: 100px;
   align-items: center;
+} 
+
+main {
+  margin: auto;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  grid-gap: 100px;
+  align-items: center;
+  width: 65%;
+  margin: auto;
 } 
 
 header img {
@@ -335,16 +349,19 @@ p {
 /*Form*/
 .error {
   color:red;
+  font-size: small;
+  padding-bottom: 2rem;
 }
 
 .invalid {
   border-color: red;
+  color: red;
 }
 
 input {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 0;
   box-sizing: border-box;
 }
 

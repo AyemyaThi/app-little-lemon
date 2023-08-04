@@ -23,10 +23,8 @@ const initializeTimes = [];
   const submitData = formData => {
     const response = submitAPI(formData);
     if (response) {
-      console.log('Submit DD::', response);
+      console.log('Submit::', response);
       //alert(response);
-      //alert(JSON.stringify(response, null, 2));
-      //navigate(pages.get('confirmedBooking').path);
     }
   };
 
@@ -42,13 +40,9 @@ const BookPage = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   dispatch({ type: "initializeTimes" });
-  // }, []);
-
   return (
     <>
-      <h1>Booking</h1>
+      <h1 className="primary2 mb-0">Booking</h1>
       <BookingForm
         availableTimes={availableTimes}
         dispatchOnDateChange={dispatch}
