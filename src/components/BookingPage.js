@@ -25,22 +25,12 @@ const BookingPage = () => {
   const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLocalStored, setIsLocalStored] = useState(false);
-  const [submittedData, setSubmittedData] = useState([]);
   const [availableTimes, dispatch] = useReducer(reducer, initializeTimes);
 
-  const updateFormData = (formData) => {
-    for (const [key, value] of Object.entries(formData)) {
-      console.log(`${key}: ${value}`);
-      setSubmittedData((prevArr) => [...prevArr, { [key] : value } ]);
-    }
-  }
-
-  const updateLocalStorgeData = () => {
-    submittedData.map((obj, index) => {
-      Object.entries(obj).forEach(([key, value]) => {
-        console.log(`${key} ${value}`);
-        localStorage.setItem(key, JSON.stringify(value));
-      });
+  const updateLocalStorgeData = (formData) => {
+    Object.entries(formData).forEach(([key, value]) => {
+      console.log(`${key} ${value}`);
+      localStorage.setItem(key, JSON.stringify(value));
     });
     setIsLocalStored(true);
   }
@@ -49,21 +39,10 @@ const BookingPage = () => {
     const response = submitAPI(formData);
     if (response) {
       setIsSubmitted(true);
-      updateFormData(formData);
+      updateLocalStorgeData(formData);
       console.log('Submit::', response);
     }
   };
-
-  useEffect(() => {
-    console.log('useEffect submittedData::', submittedData);
-    console.log('useEffect isSubmitted::', isSubmitted);
-  }, [isSubmitted]);
-
-  useEffect(() => {
-    if(isSubmitted) {
-      updateLocalStorgeData(submittedData);
-    }
-  }, [submitData]);
 
   useEffect(() => {
     if(isLocalStored) {
