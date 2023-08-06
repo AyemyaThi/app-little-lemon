@@ -14,15 +14,18 @@ const description = (desc) => {
     return content;
 }
 
-const Card = (props) => {
-    
+const Card = ({ meal }) => {
+
     return (
         <div className="card">
-            <img className="card_img" src={props.image} alt={props.title} />
-            <div class="card_container">
-                <h4><b>{props.title}</b></h4>
-                <p>{description(props.desc)}</p>
-                <button class="order">Order a delivery <FontAwesomeIcon icon={faShippingFast}  />
+            <img className="card_img" src={meal.image} alt={meal.title} />
+            <div className="card_container">
+                <div className="card_heading">
+                    <span className="card_title">{meal.name}</span>
+                    <span className="hightlight_text secondary1">{meal.price}</span>
+                </div>
+                <p>{description(meal.desc)}</p>
+                <button className="order">Order a delivery <FontAwesomeIcon icon={faShippingFast}  />
                 </button>
             </div>
         </div>

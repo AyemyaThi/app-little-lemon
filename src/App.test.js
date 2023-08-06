@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 import BookingPage from './components/BookingPage';
 import BookingForm from './components/BookingForm';
 
@@ -7,7 +8,11 @@ describe('Booking page', () => {
   const timeFormat = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
 
   test('renders Booking page', async () => {
-    render(<BookingPage />);
+    render(
+      <BrowserRouter>
+        <BookingPage />
+      </BrowserRouter>
+    );
     const linkElement = screen.getByText(/Booking/i);
     expect(linkElement).toBeInTheDocument();
 
@@ -22,17 +27,21 @@ describe('Booking page', () => {
 
   test('should update available booking time options when changing booking date', async() => {
     render(
-      <BookingPage />
+      <BrowserRouter>
+        <BookingPage />
+      </BrowserRouter>
     );
 
-    const bookingDate = '2023-08-05';
+    const bookingDate = '2023-08-10';
     const dateInput = screen.getByLabelText(/Choose Date/);
+
     const initialTimeOptions = await screen.findAllByTestId('res-time-option');
     fireEvent.change(dateInput, { target: { value: bookingDate } });
     fireEvent.blur(dateInput);
-    const updatedTimeOptions = await screen.findAllByTestId('res-time-option');
 
+    const updatedTimeOptions = await screen.findAllByTestId('res-time-option');
     expect(dateInput).toHaveValue(bookingDate);
+
     initialTimeOptions.slice(1).forEach(timeOption =>
       expect(timeOption.value).toMatch(timeFormat)
     );
@@ -119,11 +128,13 @@ describe('Booking Form', () => {
 
   test(`should display an error message and disable sumbit button when date field's value is empty`, async () => {
     render(
-      <BookingForm
-        availableTimes={availableTimes}
-        dispatchOnDateChange={dispatchOnDateChange}
-        submitData={submitData}
-      />
+      <BrowserRouter>
+        <BookingForm
+          availableTimes={availableTimes}
+          dispatchOnDateChange={dispatchOnDateChange}
+          submitData={submitData}
+        />
+      </BrowserRouter>
     );
 
     const dateInput = screen.getByLabelText(/Choose Date/);

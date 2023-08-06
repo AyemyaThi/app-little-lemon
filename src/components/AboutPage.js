@@ -1,6 +1,6 @@
 const AboutPage = () => {
     return (
-        <article>
+        <article className="cards">
            <section>
             <h1>About page</h1>
            </section>

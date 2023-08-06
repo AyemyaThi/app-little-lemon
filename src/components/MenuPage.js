@@ -1,6 +1,6 @@
 const MenuPage = () => {
     return (
-        <article>
+        <article  className="cards">
            <section>
             <h1>Menu page</h1>
            </section>

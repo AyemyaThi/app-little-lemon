@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const BookForm = ({availableTimes, dispatchOnDateChange, submitData}) => {
+const BookingForm = ({availableTimes, dispatchOnDateChange, submitData}) => {
+
   const today = new Date().toISOString().split('T')[0];
   const availableTimesOptions = availableTimes.map((item, index) => {
       return <option data-testid="res-time-option" key={index} value={item}>{item}</option>;
@@ -12,12 +13,6 @@ const BookForm = ({availableTimes, dispatchOnDateChange, submitData}) => {
   const occasionTypeOptions = occasionType.map((item) => {
     return <option data-testid="res-occasion-option" key={item}>{`${item}`}</option>;
   });
-
-  useEffect(() => {
-
-    console.log(availableTimes);
-
-  }, []);
 
   const handleDateChange = (e) => {
     console.log('handleDateChange Reach');
@@ -44,25 +39,27 @@ const BookForm = ({availableTimes, dispatchOnDateChange, submitData}) => {
     },
     validationSchema: bookingSchema,
     onSubmit: async ({ date, time, guests, occasion }, { setSubmitting }) => {
-      //console.log('inside onSubmit', values);
-      //alert(JSON.stringify(values, null, 2));
-      // console.log(date, time, guests, occasion);
       submitData({ date, time, guests, occasion });
-
-      // setSubmitting(true);
       // setTimeout(() => {
-      //   submitData(JSON.stringify(values, null, 2));
-      //   alert(JSON.stringify(values, null, 2));
-      //   setSubmitting(false);
+      //   const response = submitData({ date, time, guests, occasion });
+      //   //alert(JSON.stringify(values, null, 2));
+      //   if(response) {
+      //     setSubmitting(false);
+      //   }
       // }, 1000);
 
     },
   });
 
+  useEffect(() => {
+    //console.log('formik::', formik);
+    //localStorage.clear();
+  }, [formik]);
+
   return (
     <form
       onSubmit={formik.handleSubmit}
-      style={{ display: "grid", maxWidth: "200px", gap: "20px", padding: "3rem 0" }}
+      style={{ maxWidth: "300px", display: "grid", gap: "20px", padding: "3rem 0" }}
     >
       <label htmlFor="res-date">Choose Date</label>
       <input className={(formik.touched.date && formik.errors.date) && "invalid"}
@@ -116,11 +113,18 @@ const BookForm = ({availableTimes, dispatchOnDateChange, submitData}) => {
         <span className="error">{formik.errors.occasion}</span>
       ) : null}
 
-      <button type="submit" className="cta" disabled={formik.errors.date || formik.errors.time || formik.errors.guests || formik.errors.occasion}>Make Your Reservation</button>
+      <button type="submit" className={(!(formik.isValid)) ? "noHover cta" : "cta"} disabled={!(formik.isValid)}>
+        {(formik.isSubmitting) && <div className="loader"></div>}
+
+        {/* {formik.isSubmitting ? (
+          <div className="loader"></div>
+        ) : null} */}
+        <span style={{lineHeight: '2rem'}}>Make Your Reservation</span>
+      </button>
 
     </form>
 
   );
 };
 
-export default BookForm;
+export default BookingForm;

@@ -33,10 +33,10 @@ const Customersay = () => {
 
     return (
         <article className="customersay">
-            <h2 class="primary2">Testimonials</h2>
+            <h2 className="primary2">Testimonials</h2>
             <div className="customersay_content">
-               {ratingList.map(item => (
-                <Rating  name={item.name} rating={item.rating} image={item.image} review={item.review}/>
+               {ratingList.map((item, index) => (
+                <Rating key={index} name={item.name} rating={item.rating} image={item.image} review={item.review}/>
                ))}
             </div>
         </article>
